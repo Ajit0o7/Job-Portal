@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteOptions inherit
+RewriteRule ^candidate/([0-9]+)$ viewresume.php?candidate_id=$1 [L,QSA]
+RewriteRule ^applications/([0-9]+)$ indivisualapplications.php?j_id=$1 [L,QSA]
+RewriteRule ^manage-jobs/?$ viewjob.php [L,QSA]
+RewriteRule ^edit-job/([0-9]+)$ managejob.php?j_id=$1 [L,QSA]
+RewriteRule ^delete-job/([0-9]+)$ delete.php?j_id=$1 [L,QSA]

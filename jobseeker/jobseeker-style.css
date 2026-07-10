@@ -1,0 +1,182 @@
+
+
+/* Modernized Job Seeker Hub - Styles now inherit from main-styles.css */
+
+
+/* Container for the information and form */
+.js-signin-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+/* Information Wrapper */
+.js-signin-info-wrapper {
+    height: 330px;
+    flex: 1;
+    padding-right: 20px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+/* Logo Styling */
+.js-signin-logo {
+    max-width: 250px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Title and Description */
+.js-signin-title {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.js-signin-description {
+    font-size: 24px;
+}
+
+/* Form Wrapper */
+.js-signin-form-wrapper {
+    flex: 1;
+    padding: 50px;
+    background-color: #fff; /* White background for the form */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 8px; /* Rounded corners */
+}
+
+/* Form Styling */
+.js-signin-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputstyle {
+    width: 100%;
+    padding: 50px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Error Message Styling */
+.errormsg {
+    color: red;
+    display: none; /* Hide error messages by default */
+}
+
+/* Button Styling */
+.signbtn {
+    width: 100px;
+    font-size: 22px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.signbtn:hover {
+    background-color: #022a55;
+}
+
+
+/* Overall Container for Signup Page */
+.js-signup-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+/* Info Wrapper */
+.js-signup-info-wrapper {
+    flex: 1; 
+    padding-right: 20px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.js-signup-logo {
+    max-width: 250px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.js-signup-title {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.js-signup-description {
+    font-size: 24px;
+}
+
+/* Form Wrapper */
+.js-signup-form-wrapper {
+    flex: 1; 
+    padding: 50px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Form Styles */
+#signup-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputstyle {
+    padding: 10px; /* Padding inside input */
+    margin-bottom: 10px; /* Space between inputs */
+    border: 1px solid #ccc; /* Border for input */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 14px; /* Font size */
+}
+
+/* Button Styles */
+.signbtn {
+    padding: 10px;
+    background-color: #007bff; /* Primary button color */
+    color: #fff; /* Text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Transition effect */
+}
+
+.signbtn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Error Message Styles */
+.errormsg {
+    color: red; /* Red color for error messages */
+    display: none; /* Initially hidden */
+    font-size: 12px; /* Smaller font size */
+    margin-top: -5px; /* Align error messages */
+    margin-bottom: 10px; /* Space after error messages */
+}
+
+.backgroundresume{
+    width: 100%;
+    height: 360px;
+    margin: 0 auto;
+    margin-top: 6px;
+    background: url("../img/bannerig.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.bannertextstyle{
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    padding-top: 130px;
+    text-decoration: underline;
+}

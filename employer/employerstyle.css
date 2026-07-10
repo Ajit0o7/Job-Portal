@@ -1,0 +1,108 @@
+/* Background styling for the entire page */
+body {
+    background: linear-gradient(135deg, #6a11cb);
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+}
+
+/* Container for the form and image */
+.form-image-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 80%;
+    margin: 60px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* Style for the image */
+.form-image-container .form-image {
+    width: 50%;
+}
+
+.form-image-container .form-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Style for the form container */
+.form-container {
+    width: 50%;
+    padding: 40px;
+    background: linear-gradient(135deg, #ffffff, #f3f3f3);
+}
+
+/* Style for form elements */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+form input[type="text"],
+form input[type="number"],
+form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+/* Add a hover effect to inputs */
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form textarea:focus {
+    border-color: #2575fc;
+    outline: none;
+}
+
+/* Style for the submit button with gradient */
+form input[type="submit"] {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+/* Button hover effect */
+form input[type="submit"]:hover {
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    transform: scale(1.05);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .form-image-container {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .form-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .form-container {
+        width: 100%;
+        padding: 30px;
+    }
+}
+
