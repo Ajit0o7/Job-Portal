@@ -1,3 +1,4 @@
+<IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteOptions inherit
 RewriteRule ^job/([0-9]+)/([^/]+)/?$ viewjobdetails.php?j_id=$1 [L,QSA]
@@ -7,3 +8,4 @@ RewriteRule ^withdraw/([0-9]+)/?$ deapply.php?a_id=$1 [L,QSA]
 # Redirect old edit application links to new clean URL
 RewriteCond %{THE_REQUEST} /editjobapplication(?:\.php)?\?j_id=([0-9]+)&a_id=([0-9]+) [NC]
 RewriteRule ^ application/%1/%2? [R=301,L]
+</IfModule>
