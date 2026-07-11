@@ -4,11 +4,12 @@
     $password = ""; 
     $dbname = "portal_db";  
     
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    // Turn off exception throwing for mysqli so it fails gracefully without PHP fatal crashes
+    @mysqli_report(MYSQLI_REPORT_OFF);
+    $conn = @mysqli_connect($servername, $username, $password, $dbname);
 
-    
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    if (!$conn) {
+        $GLOBALS['db_connect_error'] = mysqli_connect_error();
     }
     
     // Dynamic Base URL calculation

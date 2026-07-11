@@ -9,8 +9,8 @@
                 <h1 style="font-size: 3.8rem; line-height: 1.2; margin-bottom: 1.5rem; font-weight: 800;">Your <span class="text-gradient">Dream Job</span> Awaits</h1>
                 <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem;">We specialize in connecting you with the most suitable job opportunities that align with your skills and expertise.</p>
                 <div class="banner-buttons">
-                    <a href="contact"><button class="btn-secondary rounded-pill">Contact Us</button></a>
-                    <a href="jobseeker/jobseekerHome"><button class="btn-primary rounded-pill">Find Job</button></a>
+                    <a href="contact.php"><button class="btn-secondary rounded-pill">Contact Us</button></a>
+                    <a href="jobseeker/jobseekerHome.php"><button class="btn-primary rounded-pill">Find Job</button></a>
                 </div>
             </div>
             <div class="banner-image">

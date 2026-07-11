@@ -22,11 +22,24 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <title>JobPortal</title>
 </head>
 <body>
+    <?php if (isset($GLOBALS['db_connect_error'])): ?>
+        <div style="background: #fef2f2; border-bottom: 1px solid #fee2e2; color: #991b1b; padding: 12px; text-align: center; font-size: 0.95rem; font-weight: 500; font-family: 'Inter', sans-serif; position: relative; z-index: 10001;">
+            <i class="fas fa-exclamation-triangle" style="margin-right: 8px;"></i>
+            Database offline: <code><?php echo htmlspecialchars($GLOBALS['db_connect_error']); ?></code>. Please import <code>portal_db.sql</code> and ensure MySQL is running.
+        </div>
+        <style>
+            .nav-container { top: 68px !important; }
+            @media (max-width: 940px) {
+                .nav-content { top: 138px !important; }
+            }
+        </style>
+    <?php endif; ?>
+
     <!-- Modern Floating Navigation -->
     <div class="nav-container">
         <nav class="glass-nav">
             <div class="logo"> 
-                <a href="<?php echo $base_url; ?>home-page"><img src="<?php echo $base_url; ?>img/site-logo.png" alt="JobPortal Logo"></a>
+                <a href="<?php echo $base_url; ?>home-page.php"><img src="<?php echo $base_url; ?>img/site-logo.png" alt="JobPortal Logo"></a>
             </div>
             
             <input type="checkbox" id="menu">
@@ -36,14 +49,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
             
             <div class="nav-content">
                 <ul class="nav-links">
-                    <li><a href="<?php echo $base_url; ?>home-page" class="nav-link <?php echo ($current_page == 'home-page.php') ? 'active' : ''; ?>">Home</a></li>      
-                    <li><a href="<?php echo $base_url; ?>about" class="nav-link <?php echo ($current_page == 'about.php') ? 'active' : ''; ?>">About Us</a></li>
-                    <li><a href="<?php echo $base_url; ?>contact" class="nav-link <?php echo ($current_page == 'contact.php') ? 'active' : ''; ?>">Contact</a></li>
+                    <li><a href="<?php echo $base_url; ?>home-page.php" class="nav-link <?php echo ($current_page == 'home-page.php') ? 'active' : ''; ?>">Home</a></li>      
+                    <li><a href="<?php echo $base_url; ?>about.php" class="nav-link <?php echo ($current_page == 'about.php') ? 'active' : ''; ?>">About Us</a></li>
+                    <li><a href="<?php echo $base_url; ?>contact.php" class="nav-link <?php echo ($current_page == 'contact.php') ? 'active' : ''; ?>">Contact</a></li>
                 </ul>
                 
                 <div class="nav-actions">
-                    <a href="<?php echo $base_url; ?>jobseeker/jobseekerHome" class="btn btn-outline-primary rounded-pill px-4 me-2 fw-semibold js-btn">Job Seekers</a>
-                    <a href="<?php echo $base_url; ?>employer/employerHome" class="btn btn-primary rounded-pill px-4 fw-semibold emp-btn">Employers</a>
+                    <a href="<?php echo $base_url; ?>jobseeker/jobseekerHome.php" class="btn btn-outline-primary rounded-pill px-4 me-2 fw-semibold js-btn">Job Seekers</a>
+                    <a href="<?php echo $base_url; ?>employer/employerHome.php" class="btn btn-primary rounded-pill px-4 fw-semibold emp-btn">Employers</a>
                 </div>
             </div>
         </nav>

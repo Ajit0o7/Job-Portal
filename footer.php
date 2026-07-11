@@ -3,7 +3,7 @@
         
         <!-- Brand & About -->
         <div>
-            <a href="<?php echo BASE_URL; ?>/home-page"><img src="img/site-logo.png" alt="Job Portal Logo" style="height: 75px; margin-bottom: 1.5rem; filter: brightness(0) invert(1);"></a>
+            <a href="<?php echo BASE_URL; ?>/home-page.php"><img src="img/site-logo.png" alt="Job Portal Logo" style="height: 75px; margin-bottom: 1.5rem; filter: brightness(0) invert(1);"></a>
             <p style="line-height: 1.6; font-size: 0.95rem; color: #94a3b8;">
                 Connecting top talent with the best employers. Start your career journey or find your perfect match with us today.
             </p>
@@ -13,9 +13,9 @@
         <div>
             <h4 style="color: #ffffff; font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem;">Quick Links</h4>
             <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
-                <li><a href="<?php echo BASE_URL; ?>/home-page" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Home</a></li>
-                <li><a href="<?php echo BASE_URL; ?>/about" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">About Us</a></li>
-                <li><a href="<?php echo BASE_URL; ?>/contact" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Contact</a></li>
+                <li><a href="<?php echo BASE_URL; ?>/home-page.php" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Home</a></li>
+                <li><a href="<?php echo BASE_URL; ?>/about.php" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">About Us</a></li>
+                <li><a href="<?php echo BASE_URL; ?>/contact.php" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Contact</a></li>
             </ul>
         </div>
 
@@ -23,9 +23,9 @@
         <div>
             <h4 style="color: #ffffff; font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem;">Portals</h4>
             <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
-                <li><a href="<?php echo BASE_URL; ?>/jobseeker/jobseekerHome" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Job Seeker Hub</a></li>
-                <li><a href="<?php echo BASE_URL; ?>/employer/employerHome" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Employer Hub</a></li>
-                <li><a href="<?php echo BASE_URL; ?>/admin" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Admin Portal</a></li>
+                <li><a href="<?php echo BASE_URL; ?>/jobseeker/jobseekerHome.php" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Job Seeker Hub</a></li>
+                <li><a href="<?php echo BASE_URL; ?>/employer/employerHome.php" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Employer Hub</a></li>
+                <li><a href="<?php echo BASE_URL; ?>/admin/index.php" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Admin Portal</a></li>
             </ul>
         </div>
 
