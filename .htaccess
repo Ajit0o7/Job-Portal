@@ -1,4 +1,6 @@
 RewriteEngine On
+RewriteBase /Job-Portal/
+
 
 # Redirect external .php requests to extensionless url (keeps subfolders intact)
 RewriteCond %{REQUEST_FILENAME} !-d

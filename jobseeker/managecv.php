@@ -3,8 +3,9 @@
     include '../database_configure.php';
     if(!isset($_SESSION['username'])){
         ?><script type='text/javascript'>alert('Please sign in first'); location.replace("<?php echo BASE_URL; ?>/jobseeker/jobseekerHome");</script><?php
-        }
-        $aid = $_SESSION['username'];
+        exit;
+    }
+    $aid = intval($_SESSION['username']);
 ?>
 <?php 
 
@@ -75,7 +76,11 @@
         
         <?php
         include '../database_configure.php';
-        $id = $_GET['sk_id'];
+        $id = isset($_GET['sk_id']) ? intval($_GET['sk_id']) : 0;
+        if ($id !== $aid) {
+            ?><script type='text/javascript'>alert('Unauthorized access'); location.replace("<?php echo BASE_URL; ?>/jobseeker/jobseekerHome");</script><?php
+            exit;
+        }
         $select = "SELECT `sk_id`, `FullName`, `EmailAddress`, `Contact`, `Country`, `Provience`, `City`, `Address`, `pdffile`, `image`, `Seeker_id`, `Education`, `Workexp`, `skill` FROM `seekerresume` WHERE Seeker_id = $id";
         $query = mysqli_query($conn,$select);
 

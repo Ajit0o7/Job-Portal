@@ -3,8 +3,9 @@
     include '../database_configure.php';
     if(!isset($_SESSION['username'])){
         ?><script type='text/javascript'>alert('Please sign in first'); location.replace("<?php echo BASE_URL; ?>/jobseeker/signin-page");</script><?php
-        }
-        $aid = $_SESSION['username'];
+        exit;
+    }
+    $aid = intval($_SESSION['username']);
 ?>
 <?php 
 
@@ -245,8 +246,8 @@
             </div>
         </div>
         <?php }else{
-            $seeker_id = $aid;
-            $sql = $seeker_id ? "SELECT * FROM seekerresume WHERE seeker_id = $seeker_id" : "SELECT * FROM seekerresume";
+            $seeker_id = intval($aid);
+            $sql = "SELECT * FROM seekerresume WHERE Seeker_id = $seeker_id";
             $result = $conn->query($sql);
             
             if ($result->num_rows > 0):

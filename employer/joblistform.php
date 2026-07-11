@@ -1,7 +1,13 @@
 <?php
 session_start();
 include '../database_configure.php';
-$id = $_SESSION['username'];
+
+if (!isset($_SESSION['username'])) {
+    header("Location: " . BASE_URL . "/employer/signin-page");
+    exit;
+}
+
+$id = intval($_SESSION['username']);
     
     $month = date('m');
     $day = date('d');
@@ -11,13 +17,13 @@ $id = $_SESSION['username'];
 
     if($_POST){
     
-        $title = $_REQUEST['title'];
-        $location = $_REQUEST['location'];
-        $Salary = $_REQUEST['salary'];
-        $requirement = $_REQUEST['requirements'];
-        $description = $_REQUEST['description'];
-        $skill = $_REQUEST['skill'];
-        $experience = $_REQUEST['experience'];
+        $title = mysqli_real_escape_string($conn, $_REQUEST['title']);
+        $location = mysqli_real_escape_string($conn, $_REQUEST['location']);
+        $Salary = mysqli_real_escape_string($conn, $_REQUEST['salary']);
+        $requirement = mysqli_real_escape_string($conn, $_REQUEST['requirements']);
+        $description = mysqli_real_escape_string($conn, $_REQUEST['description']);
+        $skill = mysqli_real_escape_string($conn, $_REQUEST['skill']);
+        $experience = mysqli_real_escape_string($conn, $_REQUEST['experience']);
         $status = 1;
 
 

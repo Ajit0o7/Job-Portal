@@ -19,12 +19,51 @@ include '../database_configure.php';
 <style>
     /* Mobile Responsiveness Overrides */
     @media (max-width: 768px) {
+        .banner {
+            padding: 150px 20px 3rem 20px !important;
+            flex-direction: column !important;
+            text-align: center !important;
+        }
+        .banner-content {
+            padding-right: 0 !important;
+            margin-bottom: 2rem !important;
+        }
+        .banner-content h1 {
+            font-size: 2.2rem !important;
+            line-height: 1.2 !important;
+        }
+        .banner-content p {
+            font-size: 1rem !important;
+            margin-bottom: 20px !important;
+        }
+        .banner-buttons {
+            justify-content: center !important;
+        }
+        .banner-image img {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+        .habt_section {
+            padding: 3rem 20px !important;
+        }
+        .habt_container {
+            gap: 2rem !important;
+            flex-direction: column !important;
+            text-align: center !important;
+        }
+        .habt_content h2 {
+            font-size: 2rem !important;
+            margin-bottom: 1rem !important;
+        }
+        .habt_content p {
+            font-size: 1rem !important;
+        }
         .responsive-glass-card {
             padding: 1.5rem !important;
             margin: 2rem auto !important;
         }
         .responsive-chart-container {
-            height: 400px !important;
+            height: 350px !important;
         }
         .responsive-title {
             font-size: 1.8rem !important;
@@ -72,7 +111,7 @@ include '../database_configure.php';
                 </div>
             </div>
             <div class="banner-image">
-                <img src="../img/job-search-networking.jpg" alt="Job Search" style="border-radius: 20px; box-shadow: var(--shadow-lg); width: 100%; max-width: 550px; object-fit: cover;">
+                <img src="../img/jobseeker_hero_banner.png" alt="Job Search" style="border-radius: 20px; box-shadow: var(--shadow-lg); width: 100%; max-width: 550px; object-fit: cover;">
             </div>
         </section>
         <!-- Introduction Section -->

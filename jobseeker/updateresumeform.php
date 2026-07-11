@@ -1,7 +1,19 @@
 <?php
 session_start();
 include '../database_configure.php';
-$jid = $_GET['sk_id'];
+
+if (!isset($_SESSION['username'])) {
+    echo "<script type='text/javascript'>alert('Please sign in first'); location.replace('" . BASE_URL . "/jobseeker/jobseekerHome');</script>";
+    exit;
+}
+
+$aid = intval($_SESSION['username']);
+$jid = isset($_GET['sk_id']) ? intval($_GET['sk_id']) : 0;
+
+if ($jid !== $aid) {
+    echo "<script type='text/javascript'>alert('Unauthorized action'); location.replace('" . BASE_URL . "/jobseeker/jobseekerHome');</script>";
+    exit;
+}
     
     $month = date('m');
     $day = date('d');
@@ -11,18 +23,18 @@ $jid = $_GET['sk_id'];
 
     if($_POST){
     
-        $Sname = $_REQUEST['fullname'];
-                $Semail = $_REQUEST['email_s'];
-                $Scontact = (int)$_REQUEST['contact_s'];
+        $Sname = mysqli_real_escape_string($conn, $_REQUEST['fullname']);
+        $Semail = mysqli_real_escape_string($conn, $_REQUEST['email_s']);
+        $Scontact = (int)$_REQUEST['contact_s'];
 
-                $Scountry = $_REQUEST['country'];
-                $Sproviend  = $_REQUEST['provience'];
-                $district = $_REQUEST['city'];
-                $address = $_REQUEST['address'];
+        $Scountry = mysqli_real_escape_string($conn, $_REQUEST['country']);
+        $Sproviend  = mysqli_real_escape_string($conn, $_REQUEST['provience']);
+        $district = mysqli_real_escape_string($conn, $_REQUEST['city']);
+        $address = mysqli_real_escape_string($conn, $_REQUEST['address']);
 
-                $education = $_REQUEST['education'];
-                $experience = $_REQUEST['work'];
-                $skill = $_REQUEST['skill'];
+        $education = mysqli_real_escape_string($conn, $_REQUEST['education']);
+        $experience = mysqli_real_escape_string($conn, $_REQUEST['work']);
+        $skill = mysqli_real_escape_string($conn, $_REQUEST['skill']);
 
                 $userfile = $_FILES['userfile'];
 

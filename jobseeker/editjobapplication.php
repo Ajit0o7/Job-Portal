@@ -4,12 +4,9 @@ include '../database_configure.php';
 
 if(!isset($_SESSION['username'])){
     ?><script type='text/javascript'>alert('Please sign in first'); location.replace("<?php echo BASE_URL; ?>/jobseeker/joblist");</script><?php
+    exit;
 }
-$id = $_SESSION['username'];
-
-
-
-    
+$id = intval($_SESSION['username']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,10 +99,17 @@ $id = $_SESSION['username'];
     <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
         <div class="glass-card" style="padding: 3rem;">
             <?php
-            $jid = $_GET['j_id'];
-            $eid = isset($_GET['e_id']) ? $_GET['e_id'] : 0;
-            $aid = isset($_GET['a_id']) ? $_GET['a_id'] : 0;
+            $jid = isset($_GET['j_id']) ? intval($_GET['j_id']) : 0;
+            $eid = isset($_GET['e_id']) ? intval($_GET['e_id']) : 0;
+            $aid = isset($_GET['a_id']) ? intval($_GET['a_id']) : 0;
             
+            // Verify that this application belongs to the logged-in user and matches the job
+            $checkApp = mysqli_query($conn, "SELECT application_id FROM application WHERE application_id = $aid AND Seeker_id = $id AND job_id = $jid AND status = 'applied'");
+            if (!$checkApp || mysqli_num_rows($checkApp) === 0) {
+                ?><script type='text/javascript'>alert('Application not found or unauthorized'); location.replace("<?php echo BASE_URL; ?>/jobseeker/joblist");</script><?php
+                exit;
+            }
+
             $select = "SELECT j.job_id, j.title, j.location, j.salary, j.description, j.requirements, j.skills, j.date_posted, e.employer_id, e.Fullname_E 
                        FROM job_postings AS j 
                        JOIN employerlogin AS e ON j.employer_id = e.employer_id 

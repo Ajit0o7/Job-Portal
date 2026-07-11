@@ -2,14 +2,14 @@
     session_start();  
     if(!isset($_SESSION["Adname"]))
     {
-    header("location:index.php");
+        header("location:index.php");
+        exit;
     }
 
     include '../database_configure.php' ;
     
-    
-        $currentPage = 0;
-        $searchlimit = 7;
+    $currentPage = 0;
+    $searchlimit = 7;
     
         if(isset($_GET['page'])){
             if($_GET['page']<=0 || !is_numeric($_GET['page'])){

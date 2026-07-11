@@ -2,13 +2,14 @@
     session_start();  
     if(!isset($_SESSION["Adname"]))
     {
-    header("location:index.php");
+        header("location:index.php");
+        exit;
     }
 
     include '../database_configure.php' ;
     
-
-    $fetch = "SELECT * FROM `employerlogin` where   `employer_id` = '$_REQUEST[s_id]'";
+    $s_id = isset($_REQUEST['s_id']) ? intval($_REQUEST['s_id']) : 0;
+    $fetch = "SELECT * FROM `employerlogin` where   `employer_id` = '$s_id'";
     $query = mysqli_query($conn,$fetch);
     $output = mysqli_fetch_assoc($query);
 
