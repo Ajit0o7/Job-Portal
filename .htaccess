@@ -6,11 +6,13 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ $1 [R=301,L]
 
 # 2. Redirect external .php requests to extensionless url (keeps subfolders intact)
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L,NE]
 
 # 3. Internally rewrite extensionless url to .php
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [L]
