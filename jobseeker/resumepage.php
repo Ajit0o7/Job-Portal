@@ -46,6 +46,8 @@
                 $('#previewAddress').text($('#Address').val() || '123 Main St, Apt 4B');
                 $('#previewLocation').text($('#City').val() + ', ' + $('#Provience').val() + ', ' + $('#Country').val());
                 
+                $('#previewDescription').text($('#description').val() || 'A passionate and dedicated professional ready to contribute and grow.');
+                
                 $('#previewEducation').html($('#Education').val().split('\n').filter(i => i.trim() !== '').map(item => `<li><i class="fas fa-check" style="color: var(--primary-light); margin-right: 5px;"></i> ${item}</li>`).join(''));
                 
                 $('#previewWorkexp').html($('#Workexp').val().split('\n').filter(i => i.trim() !== '').map(item => `<li><i class="fas fa-check" style="color: var(--primary-light); margin-right: 5px;"></i> ${item} Years</li>`).join(''));
@@ -72,6 +74,7 @@
         });
     </script>
 
+    <link rel="icon" type="image/png" href="../img/favicon.png">
 </head>
     <body>
         <div class="nav-container">
@@ -91,6 +94,7 @@
                     <li><a href="joblist" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'joblist.php') ? 'active' : ''; ?>">Find Job</a></li>
                     <li><a href="resumepage" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'resumepage.php' || basename($_SERVER['PHP_SELF']) == 'managecv.php' || basename($_SERVER['PHP_SELF']) == 'resumeform.php') ? 'active' : ''; ?>">Resume Here</a></li>
                     <li><a href="salaryexpectation" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'salaryexpectation.php') ? 'active' : ''; ?>">Expected Salary</a></li>
+                    <li><a href="appliedjobs" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'appliedjobs.php') ? 'active' : ''; ?>">Applied Jobs</a></li>
                 </ul>
                 
                 <div class="nav-actions">
@@ -173,6 +177,10 @@
                         </div>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="description" style="font-weight: 600; color: var(--text-main);">Professional Summary:</label>
+                        <textarea name="description" id="description" rows="3" required style="padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.6); font-size: 1rem; outline: none; transition: var(--transition); resize: vertical;"></textarea>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                         <label for="Education" style="font-weight: 600; color: var(--text-main);">Education (One per line):</label>
                         <textarea name="education" id="Education" rows="3" required style="padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.6); font-size: 1rem; outline: none; transition: var(--transition); resize: vertical;"></textarea>
                     </div>
@@ -208,6 +216,9 @@
                             <h4 style="font-size: 1.1rem; color: var(--primary-color); font-weight: 700; margin-bottom: 0.8rem; border-bottom: 2px solid var(--primary-light); padding-bottom: 0.5rem;">Address</h4>
                             <p id="previewAddress" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.2rem;">123 Main St, Apt 4B</p>
                             <p id="previewLocation" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">New York, NY, USA</p>
+                            
+                            <h4 style="font-size: 1.1rem; color: var(--primary-color); font-weight: 700; margin-bottom: 0.8rem; border-bottom: 2px solid var(--primary-light); padding-bottom: 0.5rem; margin-top: 1.5rem;">Summary</h4>
+                            <p id="previewDescription" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.2rem; line-height: 1.5;">A passionate and dedicated professional ready to contribute and grow.</p>
                         </div>
                     </div>
 
@@ -277,6 +288,9 @@
                         <h4 style="font-size: 1.2rem; color: var(--primary-color); font-weight: 700; margin-bottom: 0.8rem; border-bottom: 2px solid var(--primary-light); padding-bottom: 0.5rem;">Address</h4>
                         <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.2rem;"><?php echo htmlspecialchars($row['Address']); ?></p>
                         <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1rem;"><?php echo htmlspecialchars($row['City']) . ', ' . htmlspecialchars($row['Provience']) . ', ' . htmlspecialchars($row['Country']); ?></p>
+                        
+                        <h4 style="font-size: 1.2rem; color: var(--primary-color); font-weight: 700; margin-bottom: 0.8rem; border-bottom: 2px solid var(--primary-light); padding-bottom: 0.5rem; margin-top: 1.5rem;">Professional Summary</h4>
+                        <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1rem; line-height: 1.6;"><?php echo nl2br(htmlspecialchars($row['description'] ?? '')); ?></p>
                     </div>
                 </div>
                 

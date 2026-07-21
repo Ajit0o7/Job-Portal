@@ -2,6 +2,17 @@
  include 'session.php';
 ?>
 <?php include 'header.php'; ?>
+        <style>
+            .habt_section { padding-bottom: 5rem; }
+            .habt_container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 3rem; padding: 0 20px; }
+            .habt_content { flex: 1; min-width: 300px; }
+            .habt_image { flex: 1; min-width: 300px; width: 100%; display: flex; justify-content: center; }
+            .habt_image iframe { width: 100%; max-width: 100%; }
+            @media (max-width: 768px) {
+                .habt_container { flex-direction: column; }
+                .habt_image iframe { height: 350px; }
+            }
+        </style>
         <!-- Contact Us Section -->
         <section class="habt_section" style="padding-top: 140px;">
             <div class="habt_container">

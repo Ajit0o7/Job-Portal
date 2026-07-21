@@ -18,6 +18,7 @@ if (!isset($_SESSION['username'])) {
         $education = $_POST['education'];
         $experience = $_POST['work'];
         $skill = $_POST['skill'];
+        $description = $_POST['description'];
 
         // File handling for resume (PDF)
         $userfile = $_FILES['userfile'];
@@ -48,8 +49,8 @@ if (!isset($_SESSION['username'])) {
         $user = $_SESSION['username'];
 
         // Insert data into the database
-        $insert = "INSERT INTO `seekerresume`(`FullName`, `EmailAddress`, `Contact`, `Country`, `Provience`, `City`, `Address`, `pdffile`, `image`, `Seeker_id`, `Education`, `Workexp`, `skill`) 
-                   VALUES ('$Sname','$Semail','$Scontact','$Scountry','$Sproviend','$district','$address','$destinationfile2','$destinationfile','$user','$education','$experience','$skill')";
+        $insert = "INSERT INTO `seekerresume`(`FullName`, `EmailAddress`, `Contact`, `Country`, `Provience`, `City`, `Address`, `pdffile`, `image`, `Seeker_id`, `Education`, `Workexp`, `skill`, `description`) 
+                   VALUES ('$Sname','$Semail','$Scontact','$Scountry','$Sproviend','$district','$address','$destinationfile2','$destinationfile','$user','$education','$experience','$skill','$description')";
 
         if (mysqli_query($conn, $insert)) {
             echo "<script>alert('Your CV has been Uploaded.'); location.replace('" . BASE_URL . "/jobseeker/resumepage');</script>";

@@ -34,7 +34,8 @@
     /* CSS has been fully migrated to global main-styles.css */
     form input:focus, form textarea:focus { border-color: var(--primary-color) !important; box-shadow: 0 0 0 3px var(--primary-light) !important; }
 </style>
-    </head>
+        <link rel="icon" type="image/png" href="../img/favicon.png">
+</head>
     <body>
     <div class="nav-container">
         <nav class="glass-nav">
@@ -53,6 +54,7 @@
                     <li><a href="joblist" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'joblist.php') ? 'active' : ''; ?>">Find Job</a></li>
                     <li><a href="resumepage" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'resumepage.php' || basename($_SERVER['PHP_SELF']) == 'managecv.php' || basename($_SERVER['PHP_SELF']) == 'resumeform.php') ? 'active' : ''; ?>">Resume Here</a></li>
                     <li><a href="salaryexpectation" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'salaryexpectation.php') ? 'active' : ''; ?>">Expected Salary</a></li>
+                    <li><a href="appliedjobs" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'appliedjobs.php') ? 'active' : ''; ?>">Applied Jobs</a></li>
                 </ul>
                 
                 <div class="nav-actions">
@@ -81,7 +83,7 @@
             ?><script type='text/javascript'>alert('Unauthorized access'); location.replace("<?php echo BASE_URL; ?>/jobseeker/jobseekerHome");</script><?php
             exit;
         }
-        $select = "SELECT `sk_id`, `FullName`, `EmailAddress`, `Contact`, `Country`, `Provience`, `City`, `Address`, `pdffile`, `image`, `Seeker_id`, `Education`, `Workexp`, `skill` FROM `seekerresume` WHERE Seeker_id = $id";
+        $select = "SELECT `sk_id`, `FullName`, `EmailAddress`, `Contact`, `Country`, `Provience`, `City`, `Address`, `pdffile`, `image`, `Seeker_id`, `Education`, `Workexp`, `skill`, `description` FROM `seekerresume` WHERE Seeker_id = $id";
         $query = mysqli_query($conn,$select);
 
         while ($result = mysqli_fetch_assoc($query)) {
@@ -97,6 +99,7 @@
             $education = $result['Education'];
             $experience = $result['Workexp'];
             $skill = $result['skill'];
+            $description = $result['description'] ?? '';
             $existing_image = $result['image'];
 
         ?>
@@ -173,6 +176,11 @@
                         <h4 style="font-size: 1.2rem; color: var(--primary-color); font-weight: 700; margin-bottom: 1.5rem; border-bottom: 2px solid var(--primary-light); padding-bottom: 0.5rem;"><i class="fas fa-briefcase"></i> Professional Profile</h4>
                         
                         <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <label style="font-weight: 600; color: var(--text-main);"><i class="fas fa-user-edit text-muted"></i> Professional Summary:</label>
+                                <textarea id="description" name="description" required style="padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.7); font-size: 1rem; outline: none; transition: var(--transition); resize: vertical; min-height: 100px;"><?php echo htmlspecialchars($description);?></textarea>
+                            </div>
+                            
                             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                                 <label style="font-weight: 600; color: var(--text-main);"><i class="fas fa-graduation-cap text-muted"></i> Education (One per line):</label>
                                 <textarea id="education" name="education" required style="padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.7); font-size: 1rem; outline: none; transition: var(--transition); resize: vertical; min-height: 100px;"><?php echo htmlspecialchars($education);?></textarea>

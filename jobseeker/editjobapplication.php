@@ -25,6 +25,7 @@ $id = intval($_SESSION['username']);
     <title>JobPortal Seekers Hub</title>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
+    <link rel="icon" type="image/png" href="../img/favicon.png">
 </head>
     <style>
         .banner-header {
@@ -76,6 +77,7 @@ $id = intval($_SESSION['username']);
                     <li><a href="joblist" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'joblist.php') ? 'active' : ''; ?>">Find Job</a></li>
                     <li><a href="resumepage" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'resumepage.php' || basename($_SERVER['PHP_SELF']) == 'managecv.php' || basename($_SERVER['PHP_SELF']) == 'resumeform.php') ? 'active' : ''; ?>">Resume Here</a></li>
                     <li><a href="salaryexpectation" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'salaryexpectation.php') ? 'active' : ''; ?>">Expected Salary</a></li>
+                    <li><a href="appliedjobs" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'appliedjobs.php') ? 'active' : ''; ?>">Applied Jobs</a></li>
                 </ul>
                 
                 <div class="nav-actions">

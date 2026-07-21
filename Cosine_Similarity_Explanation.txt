@@ -1,0 +1,76 @@
+COSINE SIMILARITY ALGORITHM IN JOB PORTAL RECOMMENDATION SYSTEM
+================================================================
+
+This document provides a detailed breakdown of how the Cosine Similarity Algorithm is implemented in your Job Portal project (specifically in `jobseeker/joblist.php`) to recommend jobs to users based on their skills.
+
+1. THE MATHEMATICAL FORMULA
+----------------------------------------------------------------
+Cosine similarity measures the similarity between two vectors of an inner product space. It measures the cosine of the angle between them. 
+
+The formula is:
+Cosine(A, B) = (A · B) / (||A|| * ||B||)
+
+Where:
+- A · B is the "Dot Product" of vector A and vector B.
+- ||A|| is the magnitude (length) of vector A.
+- ||B|| is the magnitude (length) of vector B.
+
+The result is a value between 0.0 and 1.0. 
+- 1.0 means the vectors are exactly the same (perfect skill match).
+- 0.0 means the vectors have nothing in common (no skills match).
+
+2. HOW IT IS IMPLEMENTED IN CODE (`cosineSimilarity` function)
+----------------------------------------------------------------
+The algorithm is implemented in the `cosineSimilarity($userSkills, $jobSkills)` function. Here is the step-by-step breakdown of how the PHP code translates the math:
+
+Step A: Vectorization
+$userSkillsVector = array_count_values($userSkills);
+$jobSkillsVector = array_count_values($jobSkills);
+- This takes an array of text skills (e.g., ["PHP", "MySQL"]) and converts them into a frequency map (e.g., ["PHP" => 1, "MySQL" => 1]). This creates the mathematical "vectors".
+
+Step B: Calculating the Dot Product and User Magnitude
+foreach ($userSkillsVector as $skill => $count) {
+    $dotProduct += $count * ($jobSkillsVector[$skill] ?? 0);
+    $userMagnitude += pow($count, 2);
+}
+- It loops through the User's skills.
+- DOT PRODUCT: If the job requires the same skill, it multiplies the frequency (1 * 1 = 1) and adds it to the `$dotProduct`.
+- USER MAGNITUDE: It squares the user's skill frequency (1^2 = 1) and adds it to the `$userMagnitude`.
+
+Step C: Calculating the Job Magnitude
+foreach ($jobSkillsVector as $count) {
+    $jobMagnitude += pow($count, 2);
+}
+- It loops through the Job's required skills and squares the frequency, adding it to `$jobMagnitude`.
+
+Step D: Final Calculation (The Formula)
+return $dotProduct / (sqrt($userMagnitude) * sqrt($jobMagnitude));
+- It calculates the square root of both magnitudes and multiplies them.
+- Finally, it divides the `$dotProduct` by that result, returning the final Cosine Score (a decimal between 0 and 1).
+
+3. HOW THE SCORE IS USED (`recommendJobs` function)
+----------------------------------------------------------------
+The Recommendation Engine does not rely purely on Cosine Similarity. It combines the skill score with an experience score to give the best matches.
+
+Step A: Quick Filtering
+$matchingSkills = array_intersect($userSkills, $jobSkills);
+- Before running complex math, it checks if the user and job share at least ONE skill. If they don't, the job is completely skipped to save server resources.
+
+Step B: Scoring
+$cosineScore = $this->cosineSimilarity($userSkills, $jobSkills);
+$experienceScore = $this->calculateExperienceScore($userExperience, $job['workexperience']);
+- It calculates the Cosine Score (skill match).
+- It calculates an Experience Score (how closely the user's years of experience match the job).
+
+Step C: Final Weighted Score
+$finalScore = (0.7 * $cosineScore) + (0.3 * $experienceScore);
+- The system assigns weights: 70% importance to Skills, and 30% importance to Experience.
+- The `$finalScore` dictates how good of a match this job is for the user.
+
+Step D: Presentation
+- The scores are multiplied by 100 to become percentages (e.g., 0.85 becomes 85%).
+- The jobs are sorted in descending order based on this final score (with some logic to push jobs the user is underqualified for to the bottom).
+
+----------------------------------------------------------------
+SUMMARY
+In plain English: The system transforms text skills into numbers, mathematically compares the angle between the user's skills and the job's skills to find a percentage match (Cosine Similarity), and then blends that with an experience match (70/30 split) to rank the most relevant jobs at the top of the user's feed.

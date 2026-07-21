@@ -35,6 +35,7 @@ if ($jid !== $aid) {
         $education = mysqli_real_escape_string($conn, $_REQUEST['education']);
         $experience = mysqli_real_escape_string($conn, $_REQUEST['work']);
         $skill = mysqli_real_escape_string($conn, $_REQUEST['skill']);
+        $description = mysqli_real_escape_string($conn, $_REQUEST['description']);
 
                 $userfile = $_FILES['userfile'];
 
@@ -74,10 +75,10 @@ if ($jid !== $aid) {
                     $pdf_update = ", `pdffile`='$destinationfile2'";
                 }
 
-                $update = "UPDATE `seekerresume` SET `FullName`='$Sname',`EmailAddress`='$Semail',`Contact`='$Scontact',`Country`='$Scountry',`Provience`='$Sproviend',`City`='$district',`Address`='$address',`Education`='$education',`Workexp`='$experience',`skill`='$skill' $pdf_update $image_update WHERE Seeker_id = '$jid'";
+                $update = "UPDATE `seekerresume` SET `FullName`='$Sname',`EmailAddress`='$Semail',`Contact`='$Scontact',`Country`='$Scountry',`Provience`='$Sproviend',`City`='$district',`Address`='$address',`Education`='$education',`Workexp`='$experience',`skill`='$skill', `description`='$description' $pdf_update $image_update WHERE Seeker_id = '$jid'";
 
                 $query = mysqli_query($conn,$update);
-                if($query){ ?> <script>alert('Resume updated successful');location.replace("resumepage");</script><?php }
+                if($query){ ?> <script>alert('Resume updated successfully');location.replace("<?php echo BASE_URL; ?>/jobseeker/resumepage");</script><?php }
     }
 
 ?>

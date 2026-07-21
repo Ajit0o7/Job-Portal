@@ -54,6 +54,7 @@
             }
         }
     </script>
+    <link rel="icon" type="image/png" href="../img/favicon.png">
 </head>
 <body class="login-body">
     <div class="login-container">

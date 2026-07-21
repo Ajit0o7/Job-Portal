@@ -7,7 +7,8 @@ if(isset($_SESSION['username'])){
     <html>
     <head>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    </head>
+        <link rel="icon" type="image/png" href="../img/favicon.png">
+</head>
     <body style="background: #f4f7fb;">
         <script>
             Swal.fire({
@@ -83,6 +84,7 @@ include '../database_configure.php';
             color: white;
         }
     </style>
+    <link rel="icon" type="image/png" href="../img/favicon.png">
 </head>
 <body>
     <div class="auth-wrapper">

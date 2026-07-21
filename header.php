@@ -20,6 +20,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <title>JobPortal</title>
+    <link rel="icon" type="image/png" href="img/favicon.png">
 </head>
 <body>
     <?php if (isset($GLOBALS['db_connect_error'])): ?>
@@ -53,11 +54,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <li><a href="<?php echo $base_url; ?>about.php" class="nav-link <?php echo ($current_page == 'about.php') ? 'active' : ''; ?>">About Us</a></li>
                     <li><a href="<?php echo $base_url; ?>contact.php" class="nav-link <?php echo ($current_page == 'contact.php') ? 'active' : ''; ?>">Contact</a></li>
                 </ul>
-                
                 <div class="nav-actions">
                     <a href="<?php echo $base_url; ?>jobseeker/jobseekerHome.php" class="btn btn-outline-primary rounded-pill px-4 me-2 fw-semibold js-btn">Job Seekers</a>
                     <a href="<?php echo $base_url; ?>employer/employerHome.php" class="btn btn-primary rounded-pill px-4 fw-semibold emp-btn">Employers</a>
                 </div>
             </div>
+            <label for="menu" class="menu-overlay"></label>
         </nav>
     </div>

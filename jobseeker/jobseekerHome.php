@@ -70,6 +70,7 @@ include '../database_configure.php';
         }
     }
 </style>
+    <link rel="icon" type="image/png" href="../img/favicon.png">
 </head>
     <body>
     <div class="nav-container">
@@ -89,6 +90,7 @@ include '../database_configure.php';
                     <li><a href="joblist" class="nav-link">Find Job</a></li>
                     <li><a href="resumepage" class="nav-link">Resume Here</a></li>
                     <li><a href="salaryexpectation" class="nav-link">Expected Salary</a></li>
+                    <li><a href="appliedjobs" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'appliedjobs.php') ? 'active' : ''; ?>">Applied Jobs</a></li>
                 </ul>
                 
                 <div class="nav-actions">

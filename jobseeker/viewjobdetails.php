@@ -4,8 +4,8 @@ include '../database_configure.php';
 
 $is_logged_in = isset($_SESSION['username']);
 $id = $is_logged_in ? $_SESSION['username'] : null;
-$jid = isset($_GET['j_id']) ? (int)$_GET['j_id'] : 0;
-$eid = isset($_GET['e_id']) ? (int)$_GET['e_id'] : 0;
+$jid = isset($_GET['j_id']) ? (int)$_GET['j_id'] : (isset($_GET['job_id']) ? (int)$_GET['job_id'] : 0);
+$eid = isset($_GET['e_id']) ? (int)$_GET['e_id'] : (isset($_GET['employer_id']) ? (int)$_GET['employer_id'] : 0);
 
 if ($jid === 0) {
     echo "<script>location.replace('joblist');</script>";
@@ -25,6 +25,7 @@ if ($jid === 0) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>JobPortal - Job Details</title>
+    <link rel="icon" type="image/png" href="../img/favicon.png">
 </head>
 <body>
     <div class="nav-container">
@@ -42,6 +43,7 @@ if ($jid === 0) {
                     <li><a href="joblist" class="nav-link active">Find Job</a></li>
                     <li><a href="resumepage" class="nav-link">Resume Here</a></li>
                     <li><a href="salaryexpectation" class="nav-link">Expected Salary</a></li>
+                    <li><a href="appliedjobs" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'appliedjobs.php') ? 'active' : ''; ?>">Applied Jobs</a></li>
                 </ul>
                 <div class="nav-actions">
                     <?php if(!$is_logged_in): ?>

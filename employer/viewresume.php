@@ -9,7 +9,8 @@ if(!isset($_SESSION['username'])){
     <html>
     <head>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    </head>
+        <link rel="icon" type="image/png" href="../img/favicon.png">
+</head>
     <body style="background: #f4f7fb;">
         <script>
             Swal.fire({
@@ -42,6 +43,7 @@ $candidate_id = isset($_GET['candidate_id']) ? intval($_GET['candidate_id']) : (
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>JobPortal - Candidate Profile</title>
+    <link rel="icon" type="image/png" href="../img/favicon.png">
 </head>
 <body style="background-color: #f8fafc;">
     <div class="nav-container">

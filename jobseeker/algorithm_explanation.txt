@@ -1,0 +1,32 @@
+Multivariate Linear Regression v2.0 Implementation in salaryexpectation.php
+
+This file explains how the high-accuracy salary prediction algorithm is implemented using Multivariate Linear Regression with IQR Outlier Removal and Jaccard Skill Similarity in PHP.
+
+================================================================================
+Step 1: Data Gathering, Skill Similarity & Outlier Cleaning (IQR)
+================================================================================
+The `fetchTrainingData` method retrieves job postings and computes a **Jaccard Skill Overlap Ratio** for each record.
+Before training, extreme dataset anomalies (outliers) are purged using the **Interquartile Range (IQR)** method:
+- $Q_1$ = 25th percentile salary, $Q_3$ = 75th percentile salary
+- $IQR = Q_3 - Q_1$
+- Valid bounds: $[Q_1 - 1.5 \times IQR, Q_3 + 1.5 \times IQR]$
+
+================================================================================
+Step 2: Training the Multivariate Linear Regression Model
+================================================================================
+The model fits a multi-dimensional hyper-plane:
+  `Salary = b0 + b1 * sqrt(Experience) + b2 * SkillMatchRatio`
+
+Where:
+- `x1 = sqrt(Experience)` captures diminishing returns on experience growth.
+- `x2 = SkillMatchRatio` (Jaccard similarity between candidate skills & job skills).
+- `b0` is the y-intercept.
+- `b1` and `b2` are calculated via Ordinary Least Squares (OLS) Normal Equations solved using Cramer's Rule.
+
+================================================================================
+Step 3: Prediction & Range Estimation
+================================================================================
+- Predicts salary with non-negative slope constraints ($b_1 \ge 0, b_2 \ge 0$).
+- Calculates model $R^2$ score and confidence levels.
+- Generates Min and Max salary range bounds based on regression residual standard errors.
+

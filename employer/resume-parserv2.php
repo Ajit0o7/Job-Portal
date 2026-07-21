@@ -20,22 +20,36 @@ class CVParser {
     }
 
     public function extractTextFromPDF($filePath) {
-        $parser = new Parser();
-        $pdf = $parser->parseFile($filePath);
-        return $pdf->getText();
+        try {
+            if (!file_exists($filePath)) {
+                return ''; // Prevent parser from throwing fatal error
+            }
+            $parser = new Parser();
+            $pdf = $parser->parseFile($filePath);
+            return $pdf->getText();
+        } catch (\Exception $e) {
+            return '';
+        }
     }
 
     public function extractTextFromDOCX($filePath) {
-        $phpWord = IOFactory::load($filePath);
-        $text = '';
-        foreach ($phpWord->getSections() as $section) {
-            foreach ($section->getElements() as $element) {
-                if (method_exists($element, 'getText')) {
-                    $text .= $element->getText() . "\n";
+        try {
+            if (!file_exists($filePath)) {
+                return '';
+            }
+            $phpWord = IOFactory::load($filePath);
+            $text = '';
+            foreach ($phpWord->getSections() as $section) {
+                foreach ($section->getElements() as $element) {
+                    if (method_exists($element, 'getText')) {
+                        $text .= $element->getText() . "\n";
+                    }
                 }
             }
+            return $text;
+        } catch (\Exception $e) {
+            return '';
         }
-        return $text;
     }
 
     public function extractEntities($text) {
@@ -138,38 +152,40 @@ class CVParser {
 
     public function processMultipleCVs($files, $dbResults) {
         $results = [];
-        foreach ($files as $file) {
-            $fileType = pathinfo($file, PATHINFO_EXTENSION);
+        foreach ($dbResults as $dbResult) {
+            $file = $dbResult['pdffile'];
+            $fileType = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+            $cvText = '';
+            
             if ($fileType === 'pdf') {
                 $cvText = $this->extractTextFromPDF($file);
             } elseif ($fileType === 'docx') {
                 $cvText = $this->extractTextFromDOCX($file);
-            } else {
-                continue; 
+            }
+            
+            // Fallback to database text if PDF is empty, missing, or unsupported
+            if (empty(trim($cvText))) {
+                $cvText = $dbResult['Education'] . " " . $dbResult['Workexp'] . " " . $dbResult['skill'];
             }
 
             $entities = $this->extractEntities($cvText);
             $sections = $this->parseSections($cvText);
-
-            $fullName = ''; 
-            foreach ($dbResults as $dbResult) {
-                if ($dbResult['pdffile'] === $file) {
-                    $fullName = $dbResult['Fullname_S'];
-                    $Email = $dbResult['Email_S'];
-                    $dateapplied = $dbResult['date_applied'];
-                    $seeker_id = $dbResult['Seeker_id'];
-                    break; 
-                }
-            }
+            
+            // If parseSections couldn't find structured headers in the raw text, fallback to DB
+            if (empty($sections['education'])) $sections['education'] = $dbResult['Education'];
+            if (empty($sections['experience'])) $sections['experience'] = $dbResult['Workexp'];
+            if (empty($sections['skills'])) $sections['skills'] = $dbResult['skill'];
+            if (empty($sections['degrees'])) $sections['degrees'] = $this->extractDegrees($dbResult['Education']);
+            if (empty($sections['jobs'])) $sections['jobs'] = $this->extractJobs($dbResult['Workexp']);
 
             $results[] = [
                 'file' => $file,
                 'entities' => $entities,
                 'sections' => $sections,
-                'Fullname_S' => $fullName,
-                'Email_S' => $Email,
-                'date_applied' => $dateapplied,
-                'Seeker_id' => $seeker_id,
+                'Fullname_S' => $dbResult['Fullname_S'],
+                'Email_S' => $dbResult['Email_S'],
+                'date_applied' => $dbResult['date_applied'],
+                'Seeker_id' => $dbResult['Seeker_id'],
             ];
         }
         return $results;

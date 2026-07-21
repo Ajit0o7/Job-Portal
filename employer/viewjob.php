@@ -8,7 +8,8 @@ if(!isset($_SESSION['username'])){
     <html>
     <head>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    </head>
+        <link rel="icon" type="image/png" href="../img/favicon.png">
+</head>
     <body style="background: #f4f7fb;">
         <script>
             Swal.fire({
@@ -41,6 +42,7 @@ $eid12 = $_SESSION['username'];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>JobPortal - Manage Jobs</title>
+    <link rel="icon" type="image/png" href="../img/favicon.png">
 </head>
 <body style="display: flex; flex-direction: column; min-height: 100vh; background: var(--bg-alt); margin: 0;">
     <div class="nav-container">

@@ -114,7 +114,8 @@
   }
 
 </style>
-    </head>
+        <link rel="icon" type="image/png" href="../img/favicon.png">
+</head>
     <body>
     <?php include 'logout.php'; ?>
         <div>

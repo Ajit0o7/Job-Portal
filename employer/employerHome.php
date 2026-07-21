@@ -101,6 +101,7 @@ $eid12 = isset($_SESSION['username']) ? $_SESSION['username'] : null;
             }
         }
     </style>
+    <link rel="icon" type="image/png" href="../img/favicon.png">
 </head>
 <body style="position: relative; overflow-x: hidden;">
     <div class="bg-orb"></div>
@@ -286,6 +287,7 @@ $eid12 = isset($_SESSION['username']) ? $_SESSION['username'] : null;
                 title: 'Top Skills Among Active Candidates',
                 titleTextStyle: { fontSize: window.innerWidth < 768 ? 16 : 24, bold: true, color: '#1a1f36' },
                 backgroundColor: 'transparent',
+                fontName: 'Inter', // Fix tooltip cutoff by telling Google Charts to calculate text width with Inter
                 chartArea: { width: window.innerWidth < 768 ? '50%' : '65%', height: '80%' },
                 hAxis: {
                     title: 'Verified Candidates',
@@ -297,6 +299,7 @@ $eid12 = isset($_SESSION['username']) ? $_SESSION['username'] : null;
                     textStyle: { fontSize: window.innerWidth < 768 ? 12 : 15, color: '#1a1f36', bold: true }
                 },
                 legend: { position: 'none' },
+                tooltip: { textStyle: { fontSize: 14 } }, // Ensure tooltip font size is standard
                 animation: {
                     startup: true,
                     duration: 1500,
